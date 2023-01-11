@@ -1,0 +1,2 @@
+class MineBoard < ApplicationRecord
+end
