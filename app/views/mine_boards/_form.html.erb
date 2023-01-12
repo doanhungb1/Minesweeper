@@ -1,0 +1,17 @@
+<%= form_with(model: mine_board) do |form| %>
+  <% if mine_board.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mine_board.errors.count, "error") %> prohibited this mine_board from being saved:</h2>
+
+      <ul>
+        <% mine_board.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
