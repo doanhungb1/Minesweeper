@@ -1,4 +1,7 @@
+<h1>Board Info</h1>
 <p id="notice"><%= notice %></p>
+<p>Name: <%= @mine_board.name %></p>
 
-<%= link_to 'Edit', edit_mine_board_path(@mine_board) %> |
+<p><%= @mine_board.visualize %></p>
+
 <%= link_to 'Back', mine_boards_path %>

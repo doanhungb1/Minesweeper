@@ -10,15 +10,21 @@
   </thead>
 
   <tbody>
+    <tr>
+      <td>Board name</td>
+      <td>Creator</td>
+      <td>Created Date</td>
+    </tr>
     <% @mine_boards.each do |mine_board| %>
       <tr>
-        <td><%= link_to 'Show', mine_board %></td>
-        <td><%= link_to 'Edit', edit_mine_board_path(mine_board) %></td>
-        <td><%= link_to 'Destroy', mine_board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to mine_board.name, mine_board %></td>
+        <td><%= mine_board.creator_email %></td>
+        <td><%= mine_board.created_at %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @mine_boards %>
 
 <br>
 

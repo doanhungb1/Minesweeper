@@ -3,7 +3,7 @@ class MineBoardsController < ApplicationController
 
   # GET /mine_boards or /mine_boards.json
   def index
-    @mine_boards = MineBoard.all
+    @mine_boards = MineBoard.order(:created_at).page(params[:page]).per(params[:per])
   end
 
   # GET /mine_boards/1 or /mine_boards/1.json
@@ -21,15 +21,22 @@ class MineBoardsController < ApplicationController
 
   # POST /mine_boards or /mine_boards.json
   def create
-    @mine_board = MineBoard.new(mine_board_params)
+    service = GenerateMineboard.call(
+      name: mine_board_params[:name],
+      height: mine_board_params[:height],
+      width: mine_board_params[:width],
+      mines: mine_board_params[:mines],
+      creator_email: mine_board_params[:creator_email]
+    )
+    @mine_board = service.mine_board
 
     respond_to do |format|
-      if @mine_board.save
-        format.html { redirect_to mine_board_url(@mine_board), notice: "Mine board was successfully created." }
-        format.json { render :show, status: :created, location: @mine_board }
+      if service.success?
+        format.html { redirect_to mine_board_url(service.mine_board), notice: "Mine board was successfully created." }
+        format.json { render :show, status: :created, location: service.mine_board }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @mine_board.errors, status: :unprocessable_entity }
+        format.json { render json: service.mine_board.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,8 +70,7 @@ class MineBoardsController < ApplicationController
       @mine_board = MineBoard.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def mine_board_params
-      params.fetch(:mine_board, {})
+      params.require(:mine_board).permit(:height, :width, :mines, :creator_email, :name)
     end
 end

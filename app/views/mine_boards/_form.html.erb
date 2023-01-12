@@ -11,6 +11,32 @@
     </div>
   <% end %>
 
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :Email %><br>
+    <%= form.text_field :creator_email %>
+  </div>
+
+  <div>
+    <%= form.label :height %><br>
+    <%= form.number_field :height %>
+  </div>
+
+  <div>
+    <%= form.label :width %><br>
+    <%= form.number_field :width %>
+  </div>
+
+  <div>
+    <%= form.label :mines %><br>
+    <%= form.number_field :mines %>
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

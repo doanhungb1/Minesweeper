@@ -1,9 +1,9 @@
 class GenerateMineboard < BaseService
   attr_reader :name, :width, :height, :mines, :creator_email, :mine_positions, :mine_board
   def initialize(name:, width:, height:, mines:, creator_email:)
-    @width= width
-    @height= height
-    @mines= mines
+    @width= width.to_i
+    @height= height.to_i
+    @mines= mines.to_i
     @creator_email= creator_email
     @name = name
   end
@@ -23,7 +23,7 @@ class GenerateMineboard < BaseService
     )
 
     unless @mine_board.save
-      add_error(@mine_board.errors)
+      add_error(@mine_board.errors.full_messages)
     end
 
     self
