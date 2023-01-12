@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  mine_board:
+    mines_number_error: "Mines cannot be greater than number of cells"
