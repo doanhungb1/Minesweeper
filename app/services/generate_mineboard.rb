@@ -56,9 +56,9 @@ class GenerateMineboard < BaseService
   end
 
   def safe_cells
-    @safe_cells ||= Array (0..(total_cells-1))
+    @safe_cells ||= Array (1..total_cells)
   end
-  
+
   def total_cells
     total_cells ||= width * height
   end

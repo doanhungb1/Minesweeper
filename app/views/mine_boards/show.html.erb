@@ -5,21 +5,9 @@
     levels: {
         beginner: {
 			id: 1,
-            rows: <%= @mine_board.width %>,
-            cols: <%= @mine_board.height %>,
+            rows: <%= @mine_board.height %>,
+            cols: <%= @mine_board.width %>,
             mines: <%= @mine_board.mines %>
-        },
-        intermediate: {
-			id: 2,
-            rows: 16,
-            cols: 16,
-            mines: 40
-        },
-        expert: {
-			id: 3,
-            rows: 16,
-            cols: 30,
-            mines: 99
         }
     },
 	minCustomRows:		1,
@@ -75,7 +63,7 @@
 		//'<div id="high-score-dialog" class="window-wrapper-outer"><div class="window-wrapper-inner"><div class="window-container"><p><label>Name:</label><input type="text" id="high-score-name" /><input type="button" value="Submit" id="submit-high-score" /></p></div></div></div>'
 
         // DOM creation
-        $(this.target).append('<div id="game-container"><div id="custom-level-dialog" class="window-wrapper-outer"><div class="window-wrapper-inner"><div class="window-container"><div id="custom-title-bar" class="title-bar"></div><div id="custom-dialog-content"><div id="minesweeper-custom-fields"><p><label>Height:</label><input type="text" id="minesweeper-custom-height" class="form-textbox"></p><p><label>Width:</label><input type="text" id="minesweeper-custom-width" class="form-textbox"></p><p><label>Mines:</label><input type="text" id="minesweeper-custom-mines" class="form-textbox"></p></div><div id="minesweeper-custom-buttons"><input type="button" value="OK" id="minesweeper-ok-btn" class="form-button" /><input type="button" value="Cancel" id="minesweeper-cancel-btn" class="form-button" /></div></div></div></div></div><div id="high-score-dialog" class="window-wrapper-outer"><div class="window-wrapper-inner"><div class="window-container"><div id="high-score-dialog-content"><h2>High score!</h2></p><p><label id="high-score-name-label">Name:</label><input type="text" id="high-score-name-textbox" class="form-textbox" maxlength="20" /></p><p id="submit-high-score-container"><input type="button" value="Submit High Score" id="submit-high-score" class="form-button" /></p></div></div></div></div><div id="window-wrapper-outer" class="window-wrapper-outer"><div class="window-wrapper-inner"><div class="window-container"><div id="minesweeper-title-bar" class="title-bar"></div><div id="menu-link-container"><a id="menu-link" href="#">Game</a></div><div id="minesweeper-board-wrapper"><ul id="menu"><li id="menu-new">New</li><li class="menu-divider"></li><li id="menu-beginner" class="game-level checked">Beginner</li><li id="menu-expert" class="game-level">Expert</li><li id="menu-custom" class="game-level">Custom…</li><li class="menu-divider"></li><li id="menu-marks" class="checked">Marks (?)</li></ul><div id="minesweeper-header-wrapper"><div id="minesweeper-header-container"><div id="minesweeper-header"><div id="mine-count" class="numbers"><div id="mine-count-hundreds" class="t0"></div><div id="mine-count-tens" class="t1"></div><div id="mine-count-ones" class="t0"></div></div><div id="minesweeper-reset-button" class="face-smile"></div><div id="timer" class="numbers"><div id="timer-hundreds" class="t0"></div><div id="timer-tens" class="t0"></div><div id="timer-ones" class="t0"></div></div></div></div></div><div id="minefield"></div></div></div></div></div></div>');
+        $(this.target).append('<div id="game-container"><div id="custom-level-dialog" class="window-wrapper-outer"><div class="window-wrapper-inner"><div class="window-container"><div id="custom-title-bar" class="title-bar"></div><div id="custom-dialog-content"><div id="minesweeper-custom-fields"><p><label>Height:</label><input type="text" id="minesweeper-custom-height" class="form-textbox"></p><p><label>Width:</label><input type="text" id="minesweeper-custom-width" class="form-textbox"></p><p><label>Mines:</label><input type="text" id="minesweeper-custom-mines" class="form-textbox"></p></div><div id="minesweeper-custom-buttons"><input type="button" value="OK" id="minesweeper-ok-btn" class="form-button" /><input type="button" value="Cancel" id="minesweeper-cancel-btn" class="form-button" /></div></div></div></div></div><div id="high-score-dialog" class="window-wrapper-outer"><div class="window-wrapper-inner"><div class="window-container"><div id="high-score-dialog-content"><h2>High score!</h2></p><p><label id="high-score-name-label">Name:</label><input type="text" id="high-score-name-textbox" class="form-textbox" maxlength="20" /></p><p id="submit-high-score-container"><input type="button" value="Submit High Score" id="submit-high-score" class="form-button" /></p></div></div></div></div><div id="window-wrapper-outer" class="window-wrapper-outer"><div class="window-wrapper-inner"><div class="window-container"><div id="minesweeper-title-bar" class="title-bar"></div><div id="menu-link-container"><a id="menu-link" href="#">Game</a></div><div id="minesweeper-board-wrapper"><ul id="menu"><li id="menu-new">New</li><li class="menu-divider"></li><li id="menu-custom" class="game-level">Custom…</li><li class="menu-divider"></li><li id="menu-marks" class="checked">Marks (?)</li></ul><div id="minesweeper-header-wrapper"><div id="minesweeper-header-container"><div id="minesweeper-header"><div id="mine-count" class="numbers"><div id="mine-count-hundreds" class="t0"></div><div id="mine-count-tens" class="t1"></div><div id="mine-count-ones" class="t0"></div></div><div id="minesweeper-reset-button" class="face-smile"></div><div id="timer" class="numbers"><div id="timer-hundreds" class="t0"></div><div id="timer-tens" class="t0"></div><div id="timer-ones" class="t0"></div></div></div></div></div><div id="minefield"></div></div></div></div></div></div>');
 
         // capture special DOM elements that will be used
         this.$windowWrapperOuter =  $('#window-wrapper-outer');
@@ -91,9 +79,6 @@
         var $menu =             $('#menu'),
             $menuLink =         $('#menu-link'),
             $menuNewGame =      $('#menu-new'),
-            $menuBeginner =     $('#menu-beginner'),
-            $menuIntermediate = $('#menu-intermediate'),
-            $menuExpert =       $('#menu-expert'),
             $menuCustom =       $('#menu-custom'),
             $menuMarks =        $('#menu-marks'),
             $customDialog =     $('#custom-level-dialog'),
@@ -127,30 +112,6 @@
 
         $menuNewGame.bind('click', function() {
             self.reset();
-            $menu.hide();
-            $menuLink.removeClass('active');
-        });
-
-        $menuBeginner.bind('click', function() {
-            $('.game-level').removeClass('checked');
-            $(this).addClass('checked');
-            self.newGame( 'beginner' );
-            $menu.hide();
-            $menuLink.removeClass('active');
-        });
-
-        $menuIntermediate.bind('click', function() {
-            $('.game-level').removeClass('checked');
-            $(this).addClass('checked');
-            self.newGame( 'intermediate' );
-            $menu.hide();
-            $menuLink.removeClass('active');
-		});
-
-        $menuExpert.bind('click', function() {
-            $('.game-level').removeClass('checked');
-            $(this).addClass('checked');
-            self.newGame( 'expert' );
             $menu.hide();
             $menuLink.removeClass('active');
         });
@@ -490,8 +451,7 @@
 
     // designate unique random mine spots and store in this.mineCells
     designateMineSpots: function() {
-        this.safeCells = [];
-        this.mineCells = []
+        this.mineCells = <%= @mine_board.mines_positions %>;
 
         var i,
             randIndex;
@@ -503,9 +463,7 @@
 
         i = this.numMines;
         while ( i-- ) {
-            randIndex = -~( Math.random() * this.safeCells.length ) - 1;
-            this.mineCells.push( this.safeCells[randIndex] );
-            this.safeCells.splice( randIndex, 1 ); // remove cell from array of safe cells
+            this.safeCells.splice( i, 1 ); // remove cell from array of safe cells
         }
     }, // end designateMineSpots
 
