@@ -9,7 +9,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
+    
   </head>
 
   <body>
@@ -20,6 +20,7 @@
           <ul class="nav">
             <li class=""><a href="/">Home</a></li>
             <li class=""><%= link_to 'Boards', mine_boards_path %></li>
+            <li class=""><%= link_to 'New Mine Board', new_mine_board_path %></li>
           </ul>
         </nav>
         <%= yield %>

@@ -2,20 +2,21 @@
 <table>
   <thead>
     <tr>
-      <th colspan="2"></th>
-
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td>Board name</td>
-      <td>Creator</td>
+      <td><b>Board name</b></td>
+      <td><b>Creator</b></td>
+      <td><b>Created Date</b></td>
     </tr>
     <% @mine_boards.each do |mine_board| %>
       <tr>
         <td><%= link_to mine_board.name, mine_board %></td>
         <td><%= mine_board.creator_email %></td>
+        <td><%= mine_board.created_at %></td>
       </tr>
     <% end %>
   </tbody>
