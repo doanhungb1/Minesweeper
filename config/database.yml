@@ -85,7 +85,6 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
   database: Minesweeper_production
   username: Minesweeper
   password: <%= ENV['MINESWEEPER_DATABASE_PASSWORD'] %>
