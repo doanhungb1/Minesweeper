@@ -5,20 +5,24 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
 * Database creation
-
-* Database initialization
+```
+rails db:create
+rails db:migrate
+```
+* Generate default data
+```
+rails mine_board:generate_sample_boards
+rails mine_board:generate_sample_boards[100]
+```
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+```
+rspec
+```
 
 * Deployment instructions
-
+```
+rails s
+```
 * ...

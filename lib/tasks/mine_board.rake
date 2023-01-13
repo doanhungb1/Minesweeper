@@ -1,6 +1,6 @@
 namespace :mine_board do
-  task :generate_sample_boards => [ :environment ] do
-    number_of_boards = ARGV[1].to_i == 0 ? 20 : ARGV[1].to_i
+  task :generate_sample_boards, [:number_boards] => [ :environment ] do |t, args|
+    number_of_boards = args.number_boards.to_i == 0 ? 20 : args.number_boards.to_i
     number_of_boards.times do |_i|
       width = (Random.rand(50) + 1)
       height = (Random.rand(50) + 1)
