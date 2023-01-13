@@ -18,7 +18,7 @@ class GenerateMineboard < BaseService
       height: height,
       mines: mines,
       creator_email: creator_email,
-      mine_positions: assigned_mine_positions,
+      mines_positions: assigned_mines_positions,
       name: name
     )
 
@@ -38,26 +38,27 @@ class GenerateMineboard < BaseService
 
     true
   end
-
+  # randIndex = -~( Math.random() * this.safeCells.length ) - 1;
+  # this.mineCells.push( this.safeCells[randIndex] );
+  # this.safeCells.splice( randIndex, 1 ); // remove cell from array of safe cells
   def generate_mine_positions
-    return if mines <= assigned_mine_positions.count
+    return if mines <= assigned_mines_positions.count
 
-    mine_x = Random.rand(width)
-    mine_y = Random.rand(height)
-    mine_position = { mine_x: mine_x, mine_y: mine_y }
-    assigned_mine_positions << mine_position unless already_assigned? mine_position
-    puts mine_position
+    random_safe_cell_index = Random.rand(safe_cells.length)
+
+    assigned_mines_positions << safe_cells[random_safe_cell_index]
+    safe_cells.delete_at(random_safe_cell_index)
     generate_mine_positions
   end
 
-  def assigned_mine_positions
-    @assigned_mine_positions ||= []
+  def assigned_mines_positions
+    @assigned_mines_positions ||= []
   end
 
-  def already_assigned? mine_position
-    assigned_mine_positions.include? mine_position
+  def safe_cells
+    @safe_cells ||= Array (0..(total_cells-1))
   end
-
+  
   def total_cells
     total_cells ||= width * height
   end

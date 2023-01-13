@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_11_105931) do
+ActiveRecord::Schema.define(version: 2023_01_13_081457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 2023_01_11_105931) do
     t.integer "width", null: false
     t.integer "height", null: false
     t.integer "mines", null: false
-    t.json "mine_positions"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "mines_positions", default: [], array: true
   end
 
 end

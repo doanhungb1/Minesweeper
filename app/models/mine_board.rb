@@ -6,15 +6,15 @@ class MineBoard < ApplicationRecord
   validates :creator_email, presence: true, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
 
   def visualize
-    height.times do |y|
-      width.times do |x|
-        if mine_positions.include?({"mine_x" => x, "mine_y" => y})
-          print('1 ')
-        else
-          print('0 ')
-        end
-      end
-      puts ""
-    end
+    # height.times do |y|
+    #   width.times do |x|
+    #     if mines_positions.include?({"mine_x" => x, "mine_y" => y})
+    #       print('1 ')
+    #     else
+    #       print('0 ')
+    #     end
+    #   end
+    #   puts ""
+    # end
   end
 end
