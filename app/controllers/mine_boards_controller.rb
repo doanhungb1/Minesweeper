@@ -35,6 +35,8 @@ class MineBoardsController < ApplicationController
         format.html { redirect_to mine_board_url(service.mine_board), notice: "Mine board was successfully created." }
         format.json { render :show, status: :created, location: service.mine_board }
       else
+        @mine_board = service.mine_board
+        @service_errors = service.errors
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: service.mine_board.errors, status: :unprocessable_entity }
       end
@@ -71,6 +73,7 @@ class MineBoardsController < ApplicationController
     end
 
     def mine_board_params
-      params.require(:mine_board).permit(:height, :width, :mines, :creator_email, :name)
+      (params.permit(:height, :width, :mines, :creator_email, :name).presence ||
+       params.require(:mine_board).permit(:height, :width, :mines, :creator_email, :name))
     end
 end
