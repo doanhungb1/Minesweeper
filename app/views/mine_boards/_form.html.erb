@@ -1,5 +1,5 @@
 <%= form_with(model: mine_board) do |form| %>
-  <% if service_errors && service_errors.any? %>
+  <% if service_errors&.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(service_errors.count, "error") %> prohibited this mine_board from being saved:</h2>
 
@@ -12,31 +12,31 @@
   <% end %>
 
   <div>
-    <%= form.label :name %>
+    <b><%= form.label :name %></b>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :Email %>
+    <b><%= form.label :Email %></b>
     <%= form.text_field :creator_email %>
   </div>
 
   <div>
-    <%= form.label :height %>
+    <b><%= form.label :height %></b>
     <%= form.number_field :height %>
   </div>
 
   <div>
-    <%= form.label :width %>
+    <b><%= form.label :width %></b>
     <%= form.number_field :width %>
   </div>
 
   <div>
-    <%= form.label :mines %>
+    <b><%= form.label :mines %></b>
     <%= form.number_field :mines %>
   </div>
 
-  </br> 
+  </br>
 
   <div class="actions">
     <%= form.submit %>
